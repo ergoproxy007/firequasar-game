@@ -7,6 +7,7 @@ import com.lemmingapex.trilateration.TrilaterationFunction;
 import org.apache.commons.math3.fitting.leastsquares.LevenbergMarquardtOptimizer;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +19,7 @@ public class LocationService {
   private static final int X_POSITION_INDEX = 0;
   private static final int Y_POSITION_INDEX = 1;
 
-  public Position getPosition(List<Spaceship> spaceships) {
+  public Position calculatePositionByLocation(List<Spaceship> spaceships) {
     double[] trilaterationVector = getLocation(getCoordinates(spaceships), getDistances(spaceships));
     return new Position(trilaterationVector[X_POSITION_INDEX], trilaterationVector[Y_POSITION_INDEX]);
   }

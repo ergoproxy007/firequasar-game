@@ -4,7 +4,7 @@ import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.dtorres.firequasar.command.application.handler.HandlerTopSecretTrilerationMessage;
-import com.dtorres.firequasar.command.domain.model.SpaceshipConsolidated;
+import com.dtorres.firequasar.command.application.command.SatelliteCommandConsolidated;
 import com.dtorres.firequasar.command.domain.model.TrilerationMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +30,7 @@ public class TopSecretCommandController {
   @PostMapping(value = TOP_SECRET_ROUTE,
                consumes = APPLICATION_JSON_VALUE,
                produces = APPLICATION_JSON_VALUE)
-  public ResponseEntity<TrilerationMessage> proccesTrilerationMessageSpaceship(@RequestBody SpaceshipConsolidated requestSpaceshipConsolidated) {
+  public ResponseEntity<TrilerationMessage> proccesTrilerationMessageSpaceship(@RequestBody SatelliteCommandConsolidated requestSpaceshipConsolidated) {
     return ok(handlerTopSecretTrilerationMessage.execute(requestSpaceshipConsolidated));
   }
 

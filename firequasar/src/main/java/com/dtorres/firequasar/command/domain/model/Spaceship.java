@@ -1,43 +1,87 @@
 package com.dtorres.firequasar.command.domain.model;
 
+import com.dtorres.firequasar.command.domain.entityerror.EntityError;
+import com.dtorres.firequasar.shared.constants.ConstantsText;
+
+import java.util.stream.Stream;
+
 public class Spaceship {
 
+  public static final String THE_MESSAGE_LIST_HAS_NO_INFORMATION = "The message list has no information";
+  private static final String THE_NAME_IS_REQUIRED = "The name is required";
+  private static final String THE_DISTANCE_IS_REQUIRED = "The distance is required";
+
   private String name;
-  private double distance;
+  private Double distance;
+  private String[] messages;
   private Position position;
 
-  public Spaceship(){}
+  private EntityError entityError;
 
-  public Spaceship(double distance, Position position) {
-    this.distance = distance;
-    this.position = position;
+  public static Spaceship create(String name, Double distance, String[] messages) {
+    Spaceship spaceship = new Spaceship(name, distance, messages);
+    spaceship.getEntityError().hasErrorMessages();
+    return spaceship;
+  }
+
+  private Spaceship(String name, Double distance, String[] messages) {
+    this.entityError = new EntityError();
+
+    this.setName(name);
+    this.setDistance(distance);
+    this.setMessages(messages);
   }
 
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public double getDistance() {
+  public Double getDistance() {
     return distance;
   }
 
-  public void setDistance(double distance) {
-    this.distance = distance;
+  public String[] getMessages() {
+    return messages;
   }
 
   public Position getPosition() {
     return position;
   }
 
-  public void setPosition(Position position) {
-    this.position = position;
+  public EntityError getEntityError() {
+    return entityError;
   }
 
   public double[] getPrimitivePosition() {
+    if(position == null) {
+      position = new Position(-500.0, -100.0);
+    }
     return new double[] {position.getX(), position.getY()};
+  }
+
+  private void setName(String name) {
+    this.entityError.validateIsNullOrEmpty(name, THE_NAME_IS_REQUIRED);
+    this.name = name;
+  }
+
+  private void setDistance(Double distance) {
+    this.entityError.validateIsNullOrEmpty(distance, THE_DISTANCE_IS_REQUIRED);
+    this.distance = distance;
+  }
+
+  private void setMessages(String[] messages) {
+    if(messages != null && messages.length >= 0) {
+      Long numbersOfEmpties = Stream.of(messages).filter(message -> ConstantsText.EMPTY.equals(message)).count();
+      if(numbersOfEmpties.intValue() == messages.length) {
+        this.entityError.add(THE_MESSAGE_LIST_HAS_NO_INFORMATION);
+      }
+    } else {
+      this.entityError.add("The messages list is empty");
+    }
+    this.messages = messages;
+  }
+
+  public void setPosition(Position position) {
+    this.position = position;
   }
 }
