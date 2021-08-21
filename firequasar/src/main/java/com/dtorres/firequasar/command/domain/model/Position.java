@@ -2,22 +2,29 @@ package com.dtorres.firequasar.command.domain.model;
 
 public class Position {
 
-  private double x;
-  private double y;
+  private Double x;
+  private Double y;
 
-  public double getX() {
+  public Position() {}
+
+  public Position(Double x, Double y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  public Double getX() {
     return x;
   }
 
-  public void setX(double x) {
+  public void setX(Double x) {
     this.x = x;
   }
 
-  public double getY() {
+  public Double getY() {
     return y;
   }
 
-  public void setY(double y) {
+  public void setY(Double y) {
     this.y = y;
   }
 }
