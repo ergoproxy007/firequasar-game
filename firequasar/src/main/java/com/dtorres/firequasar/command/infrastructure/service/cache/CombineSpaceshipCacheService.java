@@ -1,6 +1,7 @@
 package com.dtorres.firequasar.command.infrastructure.service.cache;
 
 import com.dtorres.firequasar.command.domain.model.Spaceship;
+import com.dtorres.firequasar.command.domain.service.SpaceshipCacheService;
 import com.dtorres.firequasar.shared.entity.SpaceshipLocationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 import static com.dtorres.firequasar.command.infrastructure.exception.helper.TopSecretExceptionHelper.throwList;
 
 @Service
-public class CombineCacheService {
+public class CombineSpaceshipCacheService implements SpaceshipCacheService {
 
   @Autowired
   private SpaceshipLocationCacheService spaceshipLocationCacheService;
