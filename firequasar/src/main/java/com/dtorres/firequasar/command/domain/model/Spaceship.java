@@ -1,7 +1,9 @@
 package com.dtorres.firequasar.command.domain.model;
 
+import static com.dtorres.firequasar.shared.constants.ConstantsNumber.ZERO;
+import static com.dtorres.firequasar.shared.constants.ConstantsText.EMPTY;
+
 import com.dtorres.firequasar.command.domain.entityerror.EntityError;
-import com.dtorres.firequasar.shared.constants.ConstantsText;
 
 import java.util.stream.Stream;
 
@@ -16,12 +18,16 @@ public class Spaceship {
   private String[] messages;
   private Position position;
 
-  private EntityError entityError;
+  private final EntityError entityError;
 
   public static Spaceship create(String name, Double distance, String[] messages) {
     Spaceship spaceship = new Spaceship(name, distance, messages);
     spaceship.getEntityError().hasErrorMessages();
     return spaceship;
+  }
+
+  public static Spaceship create(String name, Double x, Double y) {
+    return new Spaceship(name, x, y);
   }
 
   private Spaceship(String name, Double distance, String[] messages) {
@@ -30,6 +36,13 @@ public class Spaceship {
     this.setName(name);
     this.setDistance(distance);
     this.setMessages(messages);
+  }
+
+  private Spaceship(String name, Double x, Double y) {
+    this.entityError = new EntityError();
+
+    this.setName(name);
+    this.setPosition(new Position(x, y));
   }
 
   public String getName() {
@@ -53,10 +66,10 @@ public class Spaceship {
   }
 
   public double[] getPrimitivePosition() {
-    if(position == null) {
-      position = new Position(-500.0, -100.0);
+    if(position != null) {
+      return new double[] {position.getX(), position.getY()};
     }
-    return new double[] {position.getX(), position.getY()};
+    return new double[0];
   }
 
   private void setName(String name) {
@@ -70,8 +83,8 @@ public class Spaceship {
   }
 
   private void setMessages(String[] messages) {
-    if(messages != null && messages.length >= 0) {
-      Long numbersOfEmpties = Stream.of(messages).filter(message -> ConstantsText.EMPTY.equals(message)).count();
+    if(messages != null && messages.length > ZERO) {
+      Long numbersOfEmpties = Stream.of(messages).filter(message -> EMPTY.equals(message)).count();
       if(numbersOfEmpties.intValue() == messages.length) {
         this.entityError.add(THE_MESSAGE_LIST_HAS_NO_INFORMATION);
       }

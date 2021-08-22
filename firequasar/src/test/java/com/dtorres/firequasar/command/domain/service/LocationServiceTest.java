@@ -9,6 +9,7 @@ import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpace
 import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.DISTANCE_SATO;
 import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.createMessages;
 
+import com.dtorres.firequasar.common.CommonUnitTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,19 +18,22 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import java.util.List;
+import java.util.concurrent.CompletionStage;
+
 import com.dtorres.firequasar.command.domain.model.Position;
 import com.dtorres.firequasar.command.domain.model.Spaceship;
 import com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
-public class LocationServiceTest {
+public class LocationServiceTest extends CommonUnitTest {
 
   @InjectMocks
   private LocationService locationService;
 
   @Test
   public void calculatePositionByLocationTest() {
+    //Arrange
     int count = 4;
     Double positionXPredicted = -58.315252587138595;
     Double positionYPredicted = -69.55141837312165;
@@ -39,9 +43,10 @@ public class LocationServiceTest {
                                       .add(SKYWALKER, DISTANCE_SKYWALKER, createMessages(count), new Position(100.0, -100.0))
                                       .add(SATO, DISTANCE_SATO, createMessages(count), new Position(500.0, 100.0))
                                       .build();
-
-    Position finalPosition = locationService.calculatePositionByLocation(spaceships);
-
+    //Act
+    CompletionStage<Position> positionPromise = locationService.calculatePositionAsync(spaceships);
+    Position finalPosition = getResultPromise(positionPromise);
+    //Assert
     assertEquals(positionXPredicted, finalPosition.getX(), "Trilateration result in X");
     assertEquals(positionYPredicted, finalPosition.getY(), "Trilateration result in Y");
   }

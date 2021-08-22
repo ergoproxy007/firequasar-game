@@ -10,7 +10,7 @@ public class Position {
   private Double x;
   private Double y;
 
-  private EntityError entityError;
+  private final EntityError entityError;
 
   public Position(Double x, Double y) {
     this.entityError = new EntityError();

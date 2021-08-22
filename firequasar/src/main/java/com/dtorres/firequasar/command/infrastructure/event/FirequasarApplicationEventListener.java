@@ -1,7 +1,7 @@
 package com.dtorres.firequasar.command.infrastructure.event;
 
 import com.dtorres.firequasar.command.infrastructure.configuration.SpaceshipConfigurationProperties;
-import com.dtorres.firequasar.command.infrastructure.service.SpaceshipLocationService;
+import com.dtorres.firequasar.command.infrastructure.service.cache.SpaceshipLocationCacheService;
 import com.dtorres.firequasar.shared.entity.SpaceshipLocationEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class FirequasarApplicationEventListener {
   private SpaceshipConfigurationProperties spaceshipProperties;
 
   @Autowired
-  private SpaceshipLocationService spaceshipLocationService;
+  private SpaceshipLocationCacheService spaceshipLocationCacheService;
 
   @EventListener
   public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -32,8 +32,15 @@ public class FirequasarApplicationEventListener {
   }
 
   private void saveBootData(List<SpaceshipConfigurationProperties.SpaceshipProperties> spaceships) {
-    spaceshipLocationService.save(spaceships.stream()
-                                            .map(spaceship -> new SpaceshipLocationEntity(spaceship.getName(), spaceship.getCoordinateX(), spaceship.getCoordinateY()))
-                                            .collect(Collectors.toList()));
+    try {
+      spaceshipLocationCacheService.save(spaceships.stream()
+                                              .map(spaceship -> new SpaceshipLocationEntity(spaceship.getName(), spaceship.getCoordinateX(), spaceship.getCoordinateY()))
+                                              .collect(Collectors.toList()))
+                                   .toCompletableFuture()
+                                   .get();
+    } catch (Exception exception) {
+      LOGGER.error(exception.getMessage(), exception);
+    }
   }
+
 }

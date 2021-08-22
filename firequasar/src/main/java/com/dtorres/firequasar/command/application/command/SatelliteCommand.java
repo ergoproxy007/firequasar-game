@@ -6,7 +6,7 @@ public class SatelliteCommand {
 
   private String name;
   private double distance;
-  private String[] messages;
+  private String[] message;
 
   public String getName() {
     return name;
@@ -16,7 +16,7 @@ public class SatelliteCommand {
     return distance;
   }
 
-  public String[] getMessages() {
-    return messages;
+  public String[] getMessage() {
+    return message;
   }
 }
