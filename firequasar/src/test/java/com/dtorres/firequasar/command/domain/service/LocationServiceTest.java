@@ -8,11 +8,16 @@ import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpace
 import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.SATO;
 import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.DISTANCE_SATO;
 import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.createMessages;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
+import com.dtorres.firequasar.command.infrastructure.service.trileration.NonLinearTrilaterationService;
 import com.dtorres.firequasar.common.CommonUnitTest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
@@ -30,6 +35,14 @@ public class LocationServiceTest extends CommonUnitTest {
 
   @InjectMocks
   private LocationService locationService;
+
+  @Mock
+  private NonLinearTrilaterationService trilaterationService;
+
+  @BeforeEach
+  public void init() {
+    when(trilaterationService.getLocation(any(), any())).thenCallRealMethod();
+  }
 
   @Test
   public void calculatePositionByLocationTest() {

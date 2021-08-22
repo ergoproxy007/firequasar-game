@@ -29,6 +29,5 @@ public class TopSecretCommandControllerTest {
   @Test
   public void checkStatusOKResponseProccesTrilerationMessageSpaceshipTest() {
     ResponseEntity<TrilerationMessage> trilerationMessage = controller.proccesTrilerationMessageSpaceship(new SatelliteCommandConsolidated());
-
   }
 }

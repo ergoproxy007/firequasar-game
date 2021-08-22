@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.concurrent.CompletionStage;
+import java.util.stream.Collectors;
 
 @Component
 public class HandlerTopSecretTrilerationMessage {
@@ -39,11 +40,18 @@ public class HandlerTopSecretTrilerationMessage {
   public TrilerationMessage execute(SatelliteCommandConsolidated spaceshipConsolidated) {
     List<Spaceship> spaceships = spaceshipCacheService.combineWithSpaceships(factory.convertToListBySatelliteCommand(spaceshipConsolidated.getSatellites()));
     CompletionStage<Position> positionPromise =  locationService.calculatePositionAsync(spaceships);
-    CompletionStage<String> messagePromise = messageService.buildMessage(spaceships);
+    CompletionStage<String> messagePromise = messageService.getMessage(this.getMultidimensionalMessage(spaceships));
     return positionPromise.thenCombine(messagePromise, TrilerationMessage::new)
                           .exceptionally(throwable -> throwObject(throwable, new TrilerationMessage()))
                           .toCompletableFuture()
                           .join();
   }
 
+  private String[][] getMultidimensionalMessage(List<Spaceship> spaceships) {
+    return spaceships.stream()
+                     .map(Spaceship::getMessages)
+                     .collect(Collectors.toList())
+                     .stream()
+                     .toArray(String[][]::new);
+  }
 }

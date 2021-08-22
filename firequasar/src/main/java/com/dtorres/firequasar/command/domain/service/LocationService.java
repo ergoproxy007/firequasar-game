@@ -34,10 +34,10 @@ public class LocationService {
 
   private double[][] getCoordinates(List<Spaceship> spaceships) {
     return spaceships.stream()
-      .map(Spaceship::getPrimitivePosition)
-      .collect(Collectors.toList())
-      .stream()
-      .toArray(double[][]::new);
+                     .map(Spaceship::getPrimitivePosition)
+                     .collect(Collectors.toList())
+                     .stream()
+                     .toArray(double[][]::new);
   }
 
   private double[] getDistances(List<Spaceship> spaceships) {

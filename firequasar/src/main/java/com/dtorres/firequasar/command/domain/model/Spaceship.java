@@ -69,7 +69,7 @@ public class Spaceship {
     if(position != null) {
       return new double[] {position.getX(), position.getY()};
     }
-    return new double[0];
+    return new double[ZERO];
   }
 
   private void setName(String name) {
