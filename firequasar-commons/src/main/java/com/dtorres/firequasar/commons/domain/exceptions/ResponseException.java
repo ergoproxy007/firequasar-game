@@ -1,4 +1,4 @@
-package com.dtorres.firequasar.command.domain.exception;
+package com.dtorres.firequasar.commons.domain.exceptions;
 
 public abstract class ResponseException extends RuntimeException {
 

@@ -1,8 +1,7 @@
-package com.dtorres.firequasar.shared.constants;
+package com.dtorres.firequasar.commons.constants;
 
-public class ConstantsText {
+public final class ConstantsText {
 
   public static final String EMPTY = "";
   public static final String SPACE = " ";
-
 }
