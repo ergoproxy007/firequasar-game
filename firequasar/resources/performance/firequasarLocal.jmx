@@ -46,7 +46,7 @@
       <hashTree>
         <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="TOPSECRET" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="post_topsecret" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="post_topsecret_ok" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
@@ -64,6 +64,71 @@
             &quot;mensaje&quot;,&#xd;
             &quot;&quot;&#xd;
          ]&#xd;
+      },&#xd;
+      {&#xd;
+         &quot;name&quot;:&quot;skywalker&quot;,&#xd;
+         &quot;distance&quot;:115.5,&#xd;
+         &quot;message&quot;:[&#xd;
+            &quot;&quot;,&#xd;
+            &quot;es&quot;,&#xd;
+            &quot;&quot;,&#xd;
+            &quot;&quot;,&#xd;
+            &quot;secreto&quot;&#xd;
+         ]&#xd;
+      },&#xd;
+      {&#xd;
+         &quot;name&quot;:&quot;sato&quot;,&#xd;
+         &quot;distance&quot;:142.7,&#xd;
+         &quot;message&quot;:[&#xd;
+            &quot;este&quot;,&#xd;
+            &quot;&quot;,&#xd;
+            &quot;un&quot;,&#xd;
+            &quot;&quot;,&#xd;
+            &quot;&quot;&#xd;
+         ]&#xd;
+      }&#xd;
+   ]&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${server_name}</stringProp>
+            <stringProp name="HTTPSampler.port">${port_number}</stringProp>
+            <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+            <stringProp name="HTTPSampler.path">api/topsecret</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="post_topsecret_error" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+   &quot;satellites&quot;:[&#xd;
+      {&#xd;
+         &quot;name&quot;:&quot;kenobi&quot;,&#xd;
+         &quot;distance&quot;:100.0&#xd;
       },&#xd;
       {&#xd;
          &quot;name&quot;:&quot;skywalker&quot;,&#xd;
