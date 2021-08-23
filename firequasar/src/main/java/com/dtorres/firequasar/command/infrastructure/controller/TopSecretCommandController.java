@@ -8,10 +8,7 @@ import com.dtorres.firequasar.command.application.command.SatelliteCommandConsol
 import com.dtorres.firequasar.command.domain.model.TrilerationMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -30,8 +27,8 @@ public class TopSecretCommandController {
   @PostMapping(value = TOP_SECRET_ROUTE,
                consumes = APPLICATION_JSON_VALUE,
                produces = APPLICATION_JSON_VALUE)
-  public ResponseEntity<TrilerationMessage> proccesTrilerationMessageSpaceship(@RequestBody SatelliteCommandConsolidated requestSpaceshipConsolidated) {
-    return ok(handlerTopSecretTrilerationMessage.execute(requestSpaceshipConsolidated));
+  public ResponseEntity<TrilerationMessage> proccesTrilerationMessageSpaceship(@RequestBody SatelliteCommandConsolidated satelliteCommandConsolidated) {
+    return ok(handlerTopSecretTrilerationMessage.execute(satelliteCommandConsolidated));
   }
 
 }

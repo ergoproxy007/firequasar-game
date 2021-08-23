@@ -36,8 +36,8 @@ public class HandlerTopSecretTrilerationMessage {
     this.spaceshipCacheService = spaceshipCacheService;
   }
 
-  public TrilerationMessage execute(SatelliteCommandConsolidated spaceshipConsolidated) {
-    List<Spaceship> spaceships = spaceshipCacheService.combineWithSpaceships(factory.convertToListBySatelliteCommand(spaceshipConsolidated.getSatellites()));
+  public TrilerationMessage execute(SatelliteCommandConsolidated satelliteCommandConsolidated) {
+    List<Spaceship> spaceships = spaceshipCacheService.combineWithSpaceships(factory.convertToListBySatelliteCommand(satelliteCommandConsolidated.getSatellites()));
     CompletionStage<Position> positionPromise =  locationService.calculatePosition(spaceships);
     CompletionStage<String> messagePromise = messageService.getMessage(this.getMultidimensionalMessage(spaceships));
     return positionPromise.thenCombine(messagePromise, TrilerationMessage::new)

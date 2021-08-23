@@ -1,8 +1,8 @@
 package com.dtorres.firequasar.command.application.command;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class SatelliteCommand {
+public class SatelliteCommand implements Serializable {
 
   private String name;
   private Double distance;
@@ -18,6 +18,10 @@ public class SatelliteCommand {
 
   public String getName() {
     return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public Double getDistance() {

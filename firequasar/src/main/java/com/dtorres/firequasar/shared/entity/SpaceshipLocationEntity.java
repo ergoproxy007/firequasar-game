@@ -7,7 +7,6 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-
 @Entity
 @Table(name = "spaceship_location")
 public class SpaceshipLocationEntity {
@@ -37,6 +36,12 @@ public class SpaceshipLocationEntity {
     this.setName(name);
     this.setCoordinateX(coordinateX);
     this.setCoordinateY(coordinateY);
+  }
+
+  public SpaceshipLocationEntity(String name, Double distance, String messages) {
+    this.setName(name);
+    this.setDistance(distance);
+    this.setMessages(messages);
   }
 
   public String getName() {

@@ -33,7 +33,7 @@ public class FirequasarApplicationEventListener {
 
   private void saveBootData(List<SpaceshipConfigurationProperties.SpaceshipProperties> spaceships) {
     try {
-      spaceshipLocationCacheService.save(spaceships.stream()
+      spaceshipLocationCacheService.saveAll(spaceships.stream()
                                               .map(spaceship -> new SpaceshipLocationEntity(spaceship.getName(), spaceship.getCoordinateX(), spaceship.getCoordinateY()))
                                               .collect(Collectors.toList()))
                                    .toCompletableFuture()

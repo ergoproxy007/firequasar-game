@@ -17,7 +17,11 @@ public class SpaceshipLocationCacheService {
   @Autowired
   private SpaceshipLocationRepository spaceshipLocationRepository;
 
-  public CompletionStage<List<SpaceshipLocationEntity>> save(List<SpaceshipLocationEntity> entities) {
+  public CompletionStage<SpaceshipLocationEntity> save(SpaceshipLocationEntity entity) {
+    return supplyAsync(() -> spaceshipLocationRepository.save(entity));
+  }
+
+  public CompletionStage<List<SpaceshipLocationEntity>> saveAll(List<SpaceshipLocationEntity> entities) {
     return supplyAsync(() -> spaceshipLocationRepository.saveAll(entities));
   }
 
