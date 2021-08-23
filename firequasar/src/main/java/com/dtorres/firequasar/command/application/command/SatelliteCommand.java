@@ -8,6 +8,14 @@ public class SatelliteCommand {
   private double distance;
   private String[] message;
 
+  public SatelliteCommand(){}
+
+  public SatelliteCommand(String name, double distance, String[] message) {
+    this.name = name;
+    this.distance = distance;
+    this.message = message;
+  }
+
   public String getName() {
     return name;
   }

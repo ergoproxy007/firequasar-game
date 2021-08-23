@@ -10,7 +10,6 @@ import com.dtorres.firequasar.command.domain.model.TrilerationMessage;
 import com.dtorres.firequasar.command.domain.service.LocationService;
 import com.dtorres.firequasar.command.domain.service.MessageService;
 import com.dtorres.firequasar.command.domain.service.SpaceshipCacheService;
-import com.dtorres.firequasar.command.infrastructure.service.cache.CombineSpaceshipCacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,7 +38,7 @@ public class HandlerTopSecretTrilerationMessage {
 
   public TrilerationMessage execute(SatelliteCommandConsolidated spaceshipConsolidated) {
     List<Spaceship> spaceships = spaceshipCacheService.combineWithSpaceships(factory.convertToListBySatelliteCommand(spaceshipConsolidated.getSatellites()));
-    CompletionStage<Position> positionPromise =  locationService.calculatePositionAsync(spaceships);
+    CompletionStage<Position> positionPromise =  locationService.calculatePosition(spaceships);
     CompletionStage<String> messagePromise = messageService.getMessage(this.getMultidimensionalMessage(spaceships));
     return positionPromise.thenCombine(messagePromise, TrilerationMessage::new)
                           .exceptionally(throwable -> throwObject(throwable, new TrilerationMessage()))

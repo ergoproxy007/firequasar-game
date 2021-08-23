@@ -20,14 +20,18 @@ public class LocationService {
   private static final int X_POSITION_INDEX = 0;
   private static final int Y_POSITION_INDEX = 1;
 
-  @Autowired
-  private TrilaterationService trilaterationService;
+  private final TrilaterationService trilaterationService;
 
-  public CompletionStage<Position> calculatePositionAsync(List<Spaceship> spaceships) {
-    return supplyAsync(() -> this.calculatePosition(spaceships));
+  @Autowired
+  public LocationService(TrilaterationService trilaterationService) {
+    this.trilaterationService = trilaterationService;
   }
 
-  private Position calculatePosition(List<Spaceship> spaceships) {
+  public CompletionStage<Position> calculatePosition(List<Spaceship> spaceships) {
+    return supplyAsync(() -> this.getPosition(spaceships));
+  }
+
+  private Position getPosition(List<Spaceship> spaceships) {
     double[] trilaterationVector = trilaterationService.getLocation(getCoordinates(spaceships), getDistances(spaceships));
     return new Position(trilaterationVector[X_POSITION_INDEX], trilaterationVector[Y_POSITION_INDEX]);
   }

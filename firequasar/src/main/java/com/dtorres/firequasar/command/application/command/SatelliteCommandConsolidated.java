@@ -7,11 +7,14 @@ public class SatelliteCommandConsolidated implements Serializable {
 
   private List<SatelliteCommand> satellites;
 
+  public SatelliteCommandConsolidated(){}
+
+  public SatelliteCommandConsolidated(List<SatelliteCommand> satellites) {
+    this.satellites = satellites;
+  }
+
   public List<SatelliteCommand> getSatellites() {
     return satellites;
   }
 
-  public void setSatellites(List<SatelliteCommand> satellites) {
-    this.satellites = satellites;
-  }
 }

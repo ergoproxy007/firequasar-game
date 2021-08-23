@@ -1,7 +1,7 @@
 package com.dtorres.firequasar.command.domain.model;
 
-import static com.dtorres.firequasar.shared.constants.ConstantsNumber.ZERO;
-import static com.dtorres.firequasar.shared.constants.ConstantsText.EMPTY;
+import static com.dtorres.firequasar.commons.constants.ConstantsNumber.ZERO;
+import static com.dtorres.firequasar.commons.constants.ConstantsText.EMPTY;
 
 import com.dtorres.firequasar.command.domain.entityerror.EntityError;
 

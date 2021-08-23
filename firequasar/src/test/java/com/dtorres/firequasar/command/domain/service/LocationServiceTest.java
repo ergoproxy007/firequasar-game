@@ -1,6 +1,9 @@
 package com.dtorres.firequasar.command.domain.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
 import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.KENOBI;
 import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.DISTANCE_KENOBI;
 import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.SKYWALKER;
@@ -8,8 +11,6 @@ import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpace
 import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.SATO;
 import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.DISTANCE_SATO;
 import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.createMessages;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 import com.dtorres.firequasar.command.infrastructure.service.trileration.NonLinearTrilaterationService;
 import com.dtorres.firequasar.common.CommonUnitTest;
@@ -57,7 +58,7 @@ public class LocationServiceTest extends CommonUnitTest {
                                       .add(SATO, DISTANCE_SATO, createMessages(count), new Position(500.0, 100.0))
                                       .build();
     //Act
-    CompletionStage<Position> positionPromise = locationService.calculatePositionAsync(spaceships);
+    CompletionStage<Position> positionPromise = locationService.calculatePosition(spaceships);
     Position finalPosition = getResultPromise(positionPromise);
     //Assert
     assertEquals(positionXPredicted, finalPosition.getX(), "Trilateration result in X");

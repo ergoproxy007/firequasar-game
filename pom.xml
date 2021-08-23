@@ -9,7 +9,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>firequasar</module>
+      <module>firequasar-commons</module>
+      <module>firequasar</module>
     </modules>
 
 </project>

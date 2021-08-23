@@ -1,6 +1,6 @@
 package com.dtorres.firequasar.command.domain.entityerror;
 
-import com.dtorres.firequasar.command.domain.exception.NotAcceptedAttributeException;
+import com.dtorres.firequasar.commons.domain.exceptions.NotAcceptedAttributeException;
 
 import java.util.ArrayList;
 import java.util.List;

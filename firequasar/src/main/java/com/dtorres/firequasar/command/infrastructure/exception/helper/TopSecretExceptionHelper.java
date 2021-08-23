@@ -3,8 +3,7 @@ package com.dtorres.firequasar.command.infrastructure.exception.helper;
 import static java.util.Collections.emptyList;
 
 import java.util.List;
-
-import com.dtorres.firequasar.command.domain.exception.TopSecretException;
+import com.dtorres.firequasar.commons.domain.exceptions.TopSecretException;
 import com.dtorres.firequasar.shared.log.LogErrorManager;
 
 public class TopSecretExceptionHelper {

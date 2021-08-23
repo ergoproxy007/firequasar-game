@@ -1,8 +1,8 @@
 package com.dtorres.firequasar.command.domain.service;
 
-import static com.dtorres.firequasar.shared.constants.ConstantsText.EMPTY;
-import static com.dtorres.firequasar.shared.constants.ConstantsText.SPACE;
-import static com.dtorres.firequasar.shared.constants.ConstantsNumber.ZERO;
+import static com.dtorres.firequasar.commons.constants.ConstantsText.EMPTY;
+import static com.dtorres.firequasar.commons.constants.ConstantsText.SPACE;
+import static com.dtorres.firequasar.commons.constants.ConstantsNumber.ZERO;
 
 import static java.util.concurrent.CompletableFuture.supplyAsync;
 
