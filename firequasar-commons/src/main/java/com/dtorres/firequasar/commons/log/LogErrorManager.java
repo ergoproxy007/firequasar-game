@@ -1,4 +1,4 @@
-package com.dtorres.firequasar.shared.log;
+package com.dtorres.firequasar.commons.log;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
