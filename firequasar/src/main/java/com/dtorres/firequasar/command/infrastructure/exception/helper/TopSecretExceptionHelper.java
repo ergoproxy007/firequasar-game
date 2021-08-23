@@ -14,7 +14,7 @@ public class TopSecretExceptionHelper {
   public static <T> T throwObject(Throwable throwable, Object object) {
     if(throwable != null) {
       LogErrorManager.error(OBJECT_MESSAGE, throwable);
-      throw new TopSecretException(throwable.getMessage());
+      throw new TopSecretException(OBJECT_MESSAGE);
     }
     return (T) object;
   }

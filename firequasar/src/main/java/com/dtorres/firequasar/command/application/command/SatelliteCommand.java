@@ -5,12 +5,12 @@ import java.util.List;
 public class SatelliteCommand {
 
   private String name;
-  private double distance;
+  private Double distance;
   private String[] message;
 
   public SatelliteCommand(){}
 
-  public SatelliteCommand(String name, double distance, String[] message) {
+  public SatelliteCommand(String name, Double distance, String[] message) {
     this.name = name;
     this.distance = distance;
     this.message = message;
@@ -20,7 +20,7 @@ public class SatelliteCommand {
     return name;
   }
 
-  public double getDistance() {
+  public Double getDistance() {
     return distance;
   }
 

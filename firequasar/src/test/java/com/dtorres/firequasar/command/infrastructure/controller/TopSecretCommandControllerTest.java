@@ -3,10 +3,16 @@ package com.dtorres.firequasar.command.infrastructure.controller;
 import static com.dtorres.firequasar.helper.MultiMessageHelper.getKenobiMessage;
 import static com.dtorres.firequasar.helper.MultiMessageHelper.getSkywalkerMessage;
 import static com.dtorres.firequasar.helper.MultiMessageHelper.getSatoMessage;
-import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.*;
-import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.createMessages;
+import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.SKYWALKER;
+import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.DISTANCE_SKYWALKER;
+import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.DISTANCE_KENOBI;
+import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.KENOBI;
+import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.SATO;
+import static com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship.DISTANCE_SATO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
@@ -21,15 +27,14 @@ import com.dtorres.firequasar.command.domain.model.Spaceship;
 import com.dtorres.firequasar.command.domain.model.TrilerationMessage;
 import com.dtorres.firequasar.command.domain.service.LocationService;
 import com.dtorres.firequasar.command.domain.service.MessageService;
-import com.dtorres.firequasar.command.domain.service.SpaceshipCacheService;
 import com.dtorres.firequasar.command.infrastructure.service.cache.CombineSpaceshipCacheService;
 import com.dtorres.firequasar.command.infrastructure.service.trileration.NonLinearTrilaterationService;
+import com.dtorres.firequasar.commons.domain.exceptions.TopSecretException;
 import com.dtorres.firequasar.testdatabuilder.command.TestDataBuilderSatelliteCommandConsolidated;
 import com.dtorres.firequasar.testdatabuilder.domain.TestDataBuilderSpaceship;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
@@ -37,10 +42,13 @@ import org.mockito.quality.Strictness;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.concurrent.CompletionException;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class TopSecretCommandControllerTest {
+
+  private static final String OBJECT_MESSAGE = "Exception when getting the object";
 
   private TopSecretCommandController controller;
   private HandlerTopSecretTrilerationMessage handlerTopSecretTrilerationMessage;
@@ -73,6 +81,7 @@ public class TopSecretCommandControllerTest {
                 .add(SATO, DISTANCE_SATO, getSatoMessage(), new Position(500.0, 100.0))
                 .build();
   }
+
   @Test
   public void checkStatusOKResponseProccesTrilerationMessageSpaceshipTest() {
     //Arrange
@@ -92,4 +101,17 @@ public class TopSecretCommandControllerTest {
     assertEquals(messagePredicted, trilerationMessage.getBody().getMessage(),"message is decoded");
     verify(spaceshipCacheService, times(1)).combineWithSpaceships(any());
   }
+
+  @Test
+  public void thrownTopSecretExceptionTest() {
+    //Arrange
+    List<Spaceship> spaceships = new TestDataBuilderSpaceship().add(KENOBI, DISTANCE_KENOBI, getKenobiMessage(),  null).build();
+    when(spaceshipCacheService.combineWithSpaceships(any())).thenReturn(spaceships);
+
+    SatelliteCommandConsolidated satelliteCommand = new TestDataBuilderSatelliteCommandConsolidated().add(KENOBI, null, null).build();
+    CompletionException thrown = assertThrows(CompletionException.class, () -> controller.proccesTrilerationMessageSpaceship(satelliteCommand));
+    assertTrue(thrown.getCause() instanceof TopSecretException);
+    assertEquals(OBJECT_MESSAGE, thrown.getCause().getMessage());
+  }
+
 }

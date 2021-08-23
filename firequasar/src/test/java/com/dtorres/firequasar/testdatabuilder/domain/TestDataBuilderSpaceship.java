@@ -16,7 +16,7 @@ public class TestDataBuilderSpaceship {
   public static final String SATO = "Sato";
   public static final Double DISTANCE_SATO = 142.7;
 
-  private final List<Spaceship> spaceships;
+  private List<Spaceship> spaceships;
 
   public TestDataBuilderSpaceship() {
     this.spaceships = new ArrayList<>();

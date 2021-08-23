@@ -16,7 +16,7 @@ public class TestDataBuilderSatelliteCommandConsolidated {
     this.satellites = new ArrayList<>();
   }
 
-  public TestDataBuilderSatelliteCommandConsolidated add(String name, double distance, String[] message) {
+  public TestDataBuilderSatelliteCommandConsolidated add(String name, Double distance, String[] message) {
     this.satellites.add(new SatelliteCommand(name, distance, message));
     return this;
   }
