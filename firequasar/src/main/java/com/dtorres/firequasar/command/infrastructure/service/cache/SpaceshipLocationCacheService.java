@@ -1,9 +1,11 @@
 package com.dtorres.firequasar.command.infrastructure.service.cache;
 
 import static java.util.concurrent.CompletableFuture.supplyAsync;
+import static java.util.concurrent.CompletableFuture.runAsync;
 
 import com.dtorres.firequasar.shared.entity.SpaceshipLocationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.dtorres.firequasar.command.infrastructure.repository.SpaceshipLocationRepository;
@@ -27,5 +29,13 @@ public class SpaceshipLocationCacheService {
 
   public CompletionStage<List<SpaceshipLocationEntity>> findAll() {
     return supplyAsync(() -> spaceshipLocationRepository.findAll());
+  }
+
+  public CompletionStage<Void> update(SpaceshipLocationEntity entity) {
+    return runAsync(() -> spaceshipLocationRepository.update(entity.getName(), entity.getDistance(), entity.getMessages()));
+  }
+
+  public SpaceshipLocationEntity findByName(String name) {
+    return spaceshipLocationRepository.findByName(name);
   }
 }
