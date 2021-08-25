@@ -17,8 +17,12 @@ import java.util.stream.Collectors;
 @Service
 public class DaoSpaceshipImpl implements DaoSpaceship {
 
-  @Autowired
   private SpaceshipRepository spaceshipRepository;
+
+  @Autowired
+  public DaoSpaceshipImpl(SpaceshipRepository spaceshipRepository) {
+    this.spaceshipRepository = spaceshipRepository;
+  }
 
   @Override
   public CompletionStage<DtoSpaceship> findByName(String name) {
