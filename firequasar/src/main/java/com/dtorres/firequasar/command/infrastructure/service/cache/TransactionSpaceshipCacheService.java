@@ -12,8 +12,12 @@ import java.util.concurrent.CompletionStage;
 @Service
 public class TransactionSpaceshipCacheService implements CommandCacheService {
 
+  private final SpaceshipLocationCacheService spaceshipLocationCacheService;
+
   @Autowired
-  private SpaceshipLocationCacheService spaceshipLocationCacheService;
+  public TransactionSpaceshipCacheService(SpaceshipLocationCacheService spaceshipLocationCacheService) {
+    this.spaceshipLocationCacheService = spaceshipLocationCacheService;
+  }
 
   @Override
   public CompletionStage<SpaceshipLocationEntity> save(Spaceship spaceship) {

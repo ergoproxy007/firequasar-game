@@ -94,7 +94,7 @@ public class TopSecretCommandControllerTest {
                                                         .add(SATO, DISTANCE_SATO, getSatoMessage())
                                                         .build();
     //Act
-    ResponseEntity<TrilerationMessage> trilerationMessage = controller.proccesTrilerationMessageSpaceship(satelliteCommand);
+    ResponseEntity<TrilerationMessage> trilerationMessage = controller.proccesTopSecretTrilerationMessage(satelliteCommand);
     //Assert
     assertNotNull(trilerationMessage);
     assertEquals(OK, trilerationMessage.getStatusCode());
@@ -109,7 +109,7 @@ public class TopSecretCommandControllerTest {
     when(spaceshipCacheService.combineWithSpaceships(any())).thenReturn(spaceships);
 
     SatelliteCommandConsolidated satelliteCommand = new TestDataBuilderSatelliteCommandConsolidated().add(KENOBI, null, null).build();
-    CompletionException thrown = assertThrows(CompletionException.class, () -> controller.proccesTrilerationMessageSpaceship(satelliteCommand));
+    CompletionException thrown = assertThrows(CompletionException.class, () -> controller.proccesTopSecretTrilerationMessage(satelliteCommand));
     assertTrue(thrown.getCause() instanceof TopSecretException);
     assertEquals(OBJECT_MESSAGE, thrown.getCause().getMessage());
   }

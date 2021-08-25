@@ -27,7 +27,7 @@ public class TopSecretCommandController {
   @PostMapping(value = TOP_SECRET_ROUTE,
                consumes = APPLICATION_JSON_VALUE,
                produces = APPLICATION_JSON_VALUE)
-  public ResponseEntity<TrilerationMessage> proccesTrilerationMessageSpaceship(@RequestBody SatelliteCommandConsolidated satelliteCommandConsolidated) {
+  public ResponseEntity<TrilerationMessage> proccesTopSecretTrilerationMessage(@RequestBody SatelliteCommandConsolidated satelliteCommandConsolidated) {
     return ok(handlerTopSecretTrilerationMessage.execute(satelliteCommandConsolidated));
   }
 

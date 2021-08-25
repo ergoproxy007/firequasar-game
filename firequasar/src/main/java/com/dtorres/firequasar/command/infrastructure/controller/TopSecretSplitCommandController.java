@@ -28,7 +28,7 @@ public class TopSecretSplitCommandController {
   @PostMapping(value = TOP_SECRET_SPLIT_ROUTE,
               consumes = APPLICATION_JSON_VALUE,
               produces = APPLICATION_JSON_VALUE)
-  public ResponseEntity<DtoSpaceshipSavedResponse> proccesSplitTrilerationMessageSpaceship(
+  public ResponseEntity<DtoSpaceshipSavedResponse> proccesTopSecretSplit(
           @PathVariable(name = "satellite_name", required = true) String satelliteName,
           @RequestBody SatelliteCommand satelliteCommand) {
 
