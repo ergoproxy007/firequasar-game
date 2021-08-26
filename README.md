@@ -20,8 +20,8 @@ Programa que calcula la posición de astronaves a través de triangulación y es
 ## Tabla de contenido
 **[Repositorio](#repositorio)**<br>
 **[Arquitectura](#arquitectura)**<br>
-**[Caracteristicas](#xaracteristicas)** ->Caracteristicas de la aplicación<br>
-**[Manual de usuario](#manual)**<br>
+**[Caracteristicas](#caracteristicas)**<br>
+**[Manual de usuario](#manual-de-usuario)**<br>
 **[Learn More](#learn-more)**<br>
 
 ## Repositorio
@@ -54,11 +54,13 @@ La aplicación es una RESTful API basada en arquitectura de Micro Servicios, des
 En este momento cuenta con 4 servicios rest (2 Post y 2 Get) con las siguientes firmas:
 ######
 Para ver mas detalle sobre los Json de entrada y ejemplo puede revisar la sección de **Manual de usuario y Learn More.**
+
 #### Diagrama de Componentes
 
 #### Diagrama de Clases
 
 ## Caracteristicas
+---
 ###### Características de la aplicación
  Librerias y/o Dependencias más importantes:
 
@@ -72,8 +74,16 @@ Para ver mas detalle sobre los Json de entrada y ejemplo puede revisar la secci�
    JUnit           | Unit Testing Library    | 5.jupiter    | Eclipse Public License |
    Mockito         | Test                    |              | MIT license |
    JaCoCo          | Java code coverage tools | 0.8.7       | GPL v2      |
-
-La aplicación dispone de 4 servicios Rest...
+######
+La aplicación dispone de los 4 Servicios Rest con las siguiente firmas:
+#### Path
+- #### /api
+<pre><code>POST /topsecret </code></pre>
+<pre><code>POST /topsecret_split </code></pre>
+<pre><code>GET /topsecret_split/{satellite_name} </code></pre>
+<pre><code>GET /spaceships </code></pre>
+######
+Para más detalle del consumo de los servicios, ir a la secciones de Manual de usuario y Learn More.
 
 ## Manual de usuario
 ###### Como ejecutar este programa
@@ -91,7 +101,7 @@ pensando a futuro poder agregar assets de validación o baterias de pruebas de r
 1.1 Descarga Jmeter [aquí](https://curl.se/windows/)
 1.2 Abrir el archivo en la ruta firequasar-game/firequasar/resources/performance
 1.3 Ejecutar los servicios como disponga (en View Results Tree podrá ver los resultados):
-[Screenshot]
+[Screenshot](https://github.com/ergoproxy007//firequasar-game/tree/main/firequasar/resources/user-manual/curl-example.PNG?raw=true)
 
 ### 2. Usando CURL
 2.1. Descarga curl [aquí](https://curl.se/windows/)
@@ -102,7 +112,7 @@ pensando a futuro poder agregar assets de validación o baterias de pruebas de r
 2.3.2.  curl topsecret_split GET service:
 <pre><code>curl -X GET "http://localhost:8081/api/topsecret_split/Sato" -H  "accept: application/json" -H "Content-Type: application/json"</code></pre>
 2.3.3.  Respuesta ejemplo:
-[Screenshot]
+[Screenshot][Screenshot](https://github.com/ergoproxy007//firequasar-game/tree/main/firequasar/resources/user-manual/jmeter-example.PNG?raw=true)
 
 ## Learn More
 
