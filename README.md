@@ -101,7 +101,8 @@ pensando a futuro poder agregar assets de validación o baterias de pruebas de r
 1.1 Descarga Jmeter [aquí](https://curl.se/windows/)
 1.2 Abrir el archivo en la ruta firequasar-game/firequasar/resources/performance
 1.3 Ejecutar los servicios como disponga (en View Results Tree podrá ver los resultados):
-[Screenshot](https://github.com/ergoproxy007//firequasar-game/tree/main/firequasar/resources/user-manual/curl-example.PNG?raw=true)
+###### imagen
+![Screenshot](https://github.com/ergoproxy007//firequasar-game/tree/main/firequasar/resources/user-manual/curl-example.PNG?raw=true)
 
 ### 2. Usando CURL
 2.1. Descarga curl [aquí](https://curl.se/windows/)
@@ -111,14 +112,16 @@ pensando a futuro poder agregar assets de validación o baterias de pruebas de r
 <pre><code>curl -X POST "http://localhost:8081/api/topsecret_split/Sato" -H "accept: application/json" -H  "Content-Type: application/json" -d '{"distance": 142.7,"message": ["este", "", "un", "", "mensaje"]}'</code></pre>
 2.3.2.  curl topsecret_split GET service:
 <pre><code>curl -X GET "http://localhost:8081/api/topsecret_split/Sato" -H  "accept: application/json" -H "Content-Type: application/json"</code></pre>
-2.3.3.  Respuesta ejemplo:
-[Screenshot][Screenshot](https://github.com/ergoproxy007//firequasar-game/tree/main/firequasar/resources/user-manual/jmeter-example.PNG?raw=true)
+###### 2.3.3.  Respuesta ejemplo:
+![Screenshot](https://github.com/ergoproxy007//firequasar-game/tree/main/firequasar/resources/user-manual/jmeter-example.PNG?raw=true)
 
 ## Learn More
 
 #### Test Coverage
 Informe de Test Coverage ejecutado por JaCoCo el 25/08/2021
-Command: mvn clean test
+Commands:
+mvn clean test
+mvn jacoco:report
 ######
 Path: firequasar-game/firequasar/target/site/jacoco/index.html
 [Screenshot]
