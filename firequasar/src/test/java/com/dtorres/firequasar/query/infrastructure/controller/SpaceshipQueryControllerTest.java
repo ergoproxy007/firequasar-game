@@ -57,8 +57,8 @@ public class SpaceshipQueryControllerTest {
     ResponseEntity<DtoSpaceship> result = this.controller.findByName(satelliteName);
     //Assert
     assertNotNull(result);
-    assertEquals(satelliteName, result.getStatusCode());
-    assertEquals(SATO, result.getBody().getName(),"satellite name");
+    assertEquals(OK, result.getStatusCode());
+    assertEquals(satelliteName, result.getBody().getName(),"satellite name");
     assertEquals(DISTANCE_SATO, result.getBody().getDistance(),"satellite distance");
     verify(spaceshipRepository, times(1)).findByName(any());
   }

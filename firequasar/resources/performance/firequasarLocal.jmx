@@ -46,7 +46,7 @@
       <hashTree>
         <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="TOPSECRET" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="post_topsecret_ok" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="post_topsecret_error" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
@@ -56,14 +56,7 @@
    &quot;satellites&quot;:[&#xd;
       {&#xd;
          &quot;name&quot;:&quot;kenobi&quot;,&#xd;
-         &quot;distance&quot;:100.0,&#xd;
-         &quot;message&quot;:[&#xd;
-            &quot;este&quot;,&#xd;
-            &quot;&quot;,&#xd;
-            &quot;&quot;,&#xd;
-            &quot;mensaje&quot;,&#xd;
-            &quot;&quot;&#xd;
-         ]&#xd;
+         &quot;distance&quot;:100.0&#xd;
       },&#xd;
       {&#xd;
          &quot;name&quot;:&quot;skywalker&quot;,&#xd;
@@ -118,7 +111,7 @@
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="post_topsecret_error" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="post_topsecret_ok" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
@@ -128,7 +121,14 @@
    &quot;satellites&quot;:[&#xd;
       {&#xd;
          &quot;name&quot;:&quot;kenobi&quot;,&#xd;
-         &quot;distance&quot;:100.0&#xd;
+         &quot;distance&quot;:100.0,&#xd;
+         &quot;message&quot;:[&#xd;
+            &quot;este&quot;,&#xd;
+            &quot;&quot;,&#xd;
+            &quot;&quot;,&#xd;
+            &quot;mensaje&quot;,&#xd;
+            &quot;&quot;&#xd;
+         ]&#xd;
       },&#xd;
       {&#xd;
          &quot;name&quot;:&quot;skywalker&quot;,&#xd;
