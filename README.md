@@ -15,13 +15,13 @@ Programa que calcula la posición de astronaves a través de triangulación y es
 - **Output:** el mensaje tal cual lo genera el emisor del mensaje
 - func GetMessage(messages ...[]string) (msg string)
   - Firma encontrada en la siguiente clase concreta:
-  - <pre><code>CompletionStage<String> getMessage(String[]... messages) method. Implementada en class->MessageService.java</code></pre>
+  - <pre><code>CompletionStage< String > getMessage(String[]... messages) method. Implementada en class->MessageService.java</code></pre>
 
 ## Tabla de contenido
 **[Repositorio](#repositorio)**<br>
 **[Arquitectura](#arquitectura)**<br>
-**[Características de la aplicación](#features)**<br>
-**[Manual de usuario (como ejecutar este programa)](#manual)**<br>
+**[Caracteristicas](#xaracteristicas)** ->Caracteristicas de la aplicación<br>
+**[Manual de usuario](#manual)**<br>
 **[Learn More](#learn-more)**<br>
 
 ## Repositorio
@@ -33,9 +33,9 @@ git clone https://github.com/ergoproxy007/firequasar-game.git
 Detalle del diseño y arquitectura definidos en la aplicación de firequasar:
 
 #### Diseño
-Se utiliza el enfoque de desarrollo DDD (Domain-Driven Design) para cumplir con necesidades complejas mediante una profunda conexión entre la implementación y los conceptos del modelo y núcleo del negocio.
+Se utiliza el enfoque de desarrollo **DDD (Domain-Driven Design)** para cumplir con necesidades complejas mediante una profunda conexión entre la implementación y los conceptos del modelo y núcleo del negocio.
 ######
-CQRS son las siglas de Command Query Responsibility Segregation. Es un patrón que esencia busca la separación del un modelo usado para actualizar la información y otro modelo usado para leer la información.
+**CQRS** son las siglas de Command Query Responsibility Segregation. Es un patrón que esencia busca la separación del un modelo usado para actualizar la información y otro modelo usado para leer la información.
 ######
 Más información de estos conceptos [https://martinfowler.com/tags/domain%20driven%20design.html](https://martinfowler.com/tags/domain%20driven%20design.html)
 ######
@@ -43,15 +43,23 @@ Se busco con mucho empeño en este proyecto que la lógica de dominio y de negoc
 ######
 Internamente en la aplicación se puede encontrar implementaciones patrones tales como Factory, Builder, Computación Asincrónica a través del uso de CompletionStage y Futuros (promesas).
 Implementaciones usando principios SOLID como clases con responsabilidad unica, encapsulamiento, abstracciones con interface, herencia con clases abstractas,
-uso de Gererics, Jeraquia de Excepciones, AOP, Stream, programación funcional, entre otros.
+uso de Generics, Jeraquia de Excepciones, AOP, Stream, programación funcional, entre otros.
 ######
 Las pruebas unitarias desarrolladas también cumplen con el mismo estandar de calidad con que se construyo el código funcional, buscando probar todos los caminos y una alta cobertura.
-
+######
+Las pruebas estan totalmente desacopladas de dependencias, como conexiones a base de datos o consumo de servicios externos, por lo que puede ser ejecutada con total simpleza y tranquilidad.
+######
+La aplicación es una RESTful API basada en arquitectura de Micro Servicios, desarrollada con el framework Spring Boot y Spring Core.
+######
+En este momento cuenta con 4 servicios rest (2 Post y 2 Get) con las siguientes firmas:
+######
+Para ver mas detalle sobre los Json de entrada y ejemplo puede revisar la sección de **Manual de usuario y Learn More.**
 #### Diagrama de Componentes
 
 #### Diagrama de Clases
 
-## Características de la aplicación
+## Caracteristicas
+###### Características de la aplicación
  Librerias y/o Dependencias más importantes:
 
    Dependency Name | Usage         | Version | License      |
@@ -61,16 +69,19 @@ Las pruebas unitarias desarrolladas también cumplen con el mismo estandar de ca
    Spring Data     | Starter for using Spring Data JPA with Hibernate  | 2.5.3 | Apache License 2.0 |
    H2              | in-memory database, embedded  | 1.4    | Eclipse Public License |
    Trilateration   | Solves a formulation of n-D space trilateration problem | 1.0.2 | MIT License |
-   JUnit           | Unit Testing Library    | 5 (Jupiter)  | Eclipse Public License |
+   JUnit           | Unit Testing Library    | 5.jupiter    | Eclipse Public License |
    Mockito         | Test                    |              | MIT license |
-   JaCoCo          | Java code coverage tools      | 0.8.7  | GPL v2      |
+   JaCoCo          | Java code coverage tools | 0.8.7       | GPL v2      |
 
-## Manual de usuario (como ejecutar este programa)
+La aplicación dispone de 4 servicios Rest...
+
+## Manual de usuario
+###### Como ejecutar este programa
 Puede ejecutar el programa en ambiente local una vez descargado el codigo fuente en [firequasar-game.git](https://github.com/ergoproxy007/firequasar-game.git):
 
 En ambiente local, tienen dos opciones para ejecutar y/o probar el programa:
 - 1.- Correr el proyecto directamente desde IntelliJ o Elipse usando Run Configurations
-- 2.- O también correr el proyecto con el siguiente comando en el subproyecto /firequasar: mvn spring-boot:run
+- 2.- O también puede correr el proyecto con el siguiente comando en el subproyecto /firequasar: **mvn spring-boot:run**
 
 ### 1. A través de los archivos de Jmeter (recomendado)
 La creación de los archivos en Jmeter tiene como objetivo simplificar el trabajo de ejecución de los servicios rest,
@@ -87,7 +98,7 @@ pensando a futuro poder agregar assets de validación o baterias de pruebas de r
 2.2. Descargar git bash [aquí](https://gitforwindows.org/)
 2.3. Estos son 2 ejemplos para la ejecución de algunos de los servicios:
 2.3.1.  curl topsecret_split POST service:
-<pre><code>curl -X GET "http://localhost:8081/api/topsecret_split/Sato" -H  "accept: application/json" -H "Content-Type: application/json"</code></pre>
+<pre><code>curl -X POST "http://localhost:8081/api/topsecret_split/Sato" -H "accept: application/json" -H  "Content-Type: application/json" -d '{"distance": 142.7,"message": ["este", "", "un", "", "mensaje"]}'</code></pre>
 2.3.2.  curl topsecret_split GET service:
 <pre><code>curl -X GET "http://localhost:8081/api/topsecret_split/Sato" -H  "accept: application/json" -H "Content-Type: application/json"</code></pre>
 2.3.3.  Respuesta ejemplo:
@@ -98,5 +109,6 @@ pensando a futuro poder agregar assets de validación o baterias de pruebas de r
 #### Test Coverage
 Informe de Test Coverage ejecutado por JaCoCo el 25/08/2021
 Command: mvn clean test
+######
 Path: firequasar-game/firequasar/target/site/jacoco/index.html
 [Screenshot]
