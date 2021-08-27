@@ -56,9 +56,9 @@ En este momento cuenta con 4 servicios rest (2 Post y 2 Get) con las siguientes 
 Para ver mas detalle sobre los Json de entrada y ejemplo puede revisar la sección de **Manual de usuario y Learn More.**
 
 #### Diagrama de Componentes
-![Screenshot]
+![Screenshot](https://github.com/ergoproxy007/firequasar-game/blob/main/firequasar/resources/documentation/component_diagram.jpeg?raw=true)
 #### Diagrama de Clases
-![Screenshot]
+![Screenshot](https://github.com/ergoproxy007/firequasar-game/blob/main/firequasar/resources/documentation/class_diagram.jpeg?raw=true)
 
 ## Caracteristicas
 ---
@@ -98,6 +98,7 @@ Se realiza creación, configuración y despliegue de la aplicación en GCP, con 
 - Host: https://firequasar-gcp.rj.r.appspot.com
 ###### diagrama
 ![Screenshot]
+![Screenshot](https://github.com/ergoproxy007/firequasar-game/blob/main/firequasar/resources/documentation/gcp_diagram.PNG?raw=true)
 
 ## Manual de usuario
 ###### Como ejecutar este programa
@@ -116,7 +117,7 @@ pensando a futuro poder agregar assets de validación o baterias de pruebas de r
 1.2 Abrir el archivo en la ruta firequasar-game/firequasar/resources/performance
 1.3 Ejecutar los servicios como disponga (en View Results Tree podrá ver los resultados):
 ###### imagen
-![Screenshot](https://github.com/ergoproxy007/firequasar-game/blob/main/firequasar/resources/user-manual/curl-example.PNG?raw=true)
+![Screenshot](https://github.com/ergoproxy007/firequasar-game/blob/main/firequasar/resources/user-manual/jmeter-example.PNG?raw=true)
 
 ### 2. Usando CURL
 2.1. Descarga curl [aquí](https://curl.se/windows/)
@@ -137,9 +138,8 @@ pensando a futuro poder agregar assets de validación o baterias de pruebas de r
 <pre><code>curl -X POST "https://firequasar-gcp.rj.r.appspot.com/api/topsecret_split/Sato" -H "accept: application/json" -H  "Content-Type: application/json" -d '{"distance": 142.7,"message": ["este", "", "un", "", "mensaje"]}'</code></pre>
 2.5.2.  curl topsecret_split GET service:
 <pre><code>curl -X GET "https://firequasar-gcp.rj.r.appspot.com/api/topsecret_split/Sato" -H  "accept: application/json" -H "Content-Type: application/json"</code></pre>
-
 ###### 2.3.3.  Respuesta ejemplo:
-![Screenshot](https://github.com/ergoproxy007/firequasar-game/blob/main/firequasar/resources/user-manual/jmeter-example.PNG?raw=true)
+![Screenshot](https://github.com/ergoproxy007/firequasar-game/blob/main/firequasar/resources/user-manual/curl-example.PNG?raw=true)
 
 ## Learn More
 
@@ -150,4 +150,4 @@ mvn clean test
 mvn jacoco:report
 ######
 Path: firequasar-game/firequasar/target/site/jacoco/index.html
-[Screenshot]
+![Screenshot](https://github.com/ergoproxy007/firequasar-game/blob/main/firequasar/resources/user-manual/coverage_report.PNG?raw=true)
