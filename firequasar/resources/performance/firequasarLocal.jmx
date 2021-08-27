@@ -15,7 +15,7 @@
           </elementProp>
           <elementProp name="port_number" elementType="Argument">
             <stringProp name="Argument.name">port_number</stringProp>
-            <stringProp name="Argument.value">8081</stringProp>
+            <stringProp name="Argument.value">8080</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="protocol" elementType="Argument">
