@@ -56,13 +56,14 @@ En este momento cuenta con 4 servicios rest (2 Post y 2 Get) con las siguientes 
 Para ver mas detalle sobre los Json de entrada y ejemplo puede revisar la sección de **Manual de usuario y Learn More.**
 
 #### Diagrama de Componentes
-
+![Screenshot]
 #### Diagrama de Clases
+![Screenshot]
 
 ## Caracteristicas
 ---
 ###### Características de la aplicación
- Librerias y/o Dependencias más importantes:
+### Librerias y/o Dependencias más importantes:
 
    Dependency Name | Usage         | Version | License      |
    -------------   | ------------- | ------- | -------------
@@ -78,12 +79,25 @@ Para ver mas detalle sobre los Json de entrada y ejemplo puede revisar la secci�
 La aplicación dispone de los 4 Servicios Rest con las siguiente firmas:
 #### Path
 - #### /api
+###### calcula la posicion y descifra el mensaje de las astronave sin almacenarlas
 <pre><code>POST /topsecret </code></pre>
+###### almacena la posicion y mensaje de una astronave
 <pre><code>POST /topsecret_split </code></pre>
+###### calcula la posicion y descifra el mensaje de las astronaves almacenadas
 <pre><code>GET /topsecret_split/{satellite_name} </code></pre>
+###### consulta la información almacenada de las astronaves
 <pre><code>GET /spaceships </code></pre>
 ######
 Para más detalle del consumo de los servicios, ir a la secciones de Manual de usuario y Learn More.
+## Google Cloud Platform Alojamiento:
+Se realiza creación, configuración y despliegue de la aplicación en GCP, con los siguiente datos:
+- Account = torresruizdaniel23@gmail.com
+- Project = firequasar-gcp
+- Nube: privada
+- Zona: southamerica-east1
+- Host: https://firequasar-gcp.rj.r.appspot.com
+###### diagrama
+![Screenshot]
 
 ## Manual de usuario
 ###### Como ejecutar este programa
@@ -102,18 +116,30 @@ pensando a futuro poder agregar assets de validación o baterias de pruebas de r
 1.2 Abrir el archivo en la ruta firequasar-game/firequasar/resources/performance
 1.3 Ejecutar los servicios como disponga (en View Results Tree podrá ver los resultados):
 ###### imagen
-![Screenshot](https://github.com/ergoproxy007//firequasar-game/tree/main/firequasar/resources/user-manual/curl-example.PNG?raw=true)
+![Screenshot](https://github.com/ergoproxy007/firequasar-game/blob/main/firequasar/resources/user-manual/curl-example.PNG?raw=true)
 
 ### 2. Usando CURL
 2.1. Descarga curl [aquí](https://curl.se/windows/)
 2.2. Descargar git bash [aquí](https://gitforwindows.org/)
 2.3. Estos son 2 ejemplos para la ejecución de algunos de los servicios:
-2.3.1.  curl topsecret_split POST service:
-<pre><code>curl -X POST "http://localhost:8081/api/topsecret_split/Sato" -H "accept: application/json" -H  "Content-Type: application/json" -d '{"distance": 142.7,"message": ["este", "", "un", "", "mensaje"]}'</code></pre>
-2.3.2.  curl topsecret_split GET service:
-<pre><code>curl -X GET "http://localhost:8081/api/topsecret_split/Sato" -H  "accept: application/json" -H "Content-Type: application/json"</code></pre>
+2.4.  Consumo en ambiente local:
+2.5.1  curl topsecret POST service:
+<pre><code>curl -X POST "http://localhost:8080/api/topsecret" -H "accept: application/json" -H  "Content-Type: application/json" -d '{"satellites":[{"name":"kenobi","distance":100.0,"message":["este","","","mensaje",""]},{"name":"skywalker","distance":115.5,"message":["","es","","","secreto"]},{"name":"sato","distance":142.7,"message":["este","","un","",""]}]}'</code></pre>
+2.4.2.  curl topsecret_split POST service:
+<pre><code>curl -X POST "http://localhost:8080/api/topsecret_split/Sato" -H "accept: application/json" -H  "Content-Type: application/json" -d '{"distance": 142.7,"message": ["este", "", "un", "", "mensaje"]}'</code></pre>
+2.4.3.  curl topsecret_split GET service:
+<pre><code>curl -X GET "http://localhost:8080/api/topsecret_split/Sato" -H  "accept: application/json" -H "Content-Type: application/json"</code></pre>
+######
+2.5  Consumo en ambiente productivo:
+2.5.1  curl topsecret POST service:
+<pre><code>curl -X POST "https://firequasar-gcp.rj.r.appspot.com/api/topsecret" -H "accept: application/json" -H  "Content-Type: application/json" -d '{"satellites":[{"name":"kenobi","distance":100.0,"message":["este","","","mensaje",""]},{"name":"skywalker","distance":115.5,"message":["","es","","","secreto"]},{"name":"sato","distance":142.7,"message":["este","","un","",""]}]}'</code></pre>
+2.5.1.  curl topsecret_split POST service:
+<pre><code>curl -X POST "https://firequasar-gcp.rj.r.appspot.com/api/topsecret_split/Sato" -H "accept: application/json" -H  "Content-Type: application/json" -d '{"distance": 142.7,"message": ["este", "", "un", "", "mensaje"]}'</code></pre>
+2.5.2.  curl topsecret_split GET service:
+<pre><code>curl -X GET "https://firequasar-gcp.rj.r.appspot.com/api/topsecret_split/Sato" -H  "accept: application/json" -H "Content-Type: application/json"</code></pre>
+
 ###### 2.3.3.  Respuesta ejemplo:
-![Screenshot](https://github.com/ergoproxy007//firequasar-game/tree/main/firequasar/resources/user-manual/jmeter-example.PNG?raw=true)
+![Screenshot](https://github.com/ergoproxy007/firequasar-game/blob/main/firequasar/resources/user-manual/jmeter-example.PNG?raw=true)
 
 ## Learn More
 
