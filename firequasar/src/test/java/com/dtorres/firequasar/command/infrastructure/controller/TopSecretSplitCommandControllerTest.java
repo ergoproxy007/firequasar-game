@@ -15,6 +15,8 @@ import static org.springframework.http.HttpStatus.OK;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
+
+import com.dtorres.firequasar.command.infrastructure.old.controller.TopSecretSplitCommandController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

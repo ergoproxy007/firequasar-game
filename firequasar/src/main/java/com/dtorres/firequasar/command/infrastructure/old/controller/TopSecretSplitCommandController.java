@@ -1,4 +1,4 @@
-package com.dtorres.firequasar.command.infrastructure.controller;
+package com.dtorres.firequasar.command.infrastructure.old.controller;
 
 import com.dtorres.firequasar.command.application.command.SatelliteCommand;
 import com.dtorres.firequasar.command.application.handler.HandlerTopSecretSplitSaveSpaceship;

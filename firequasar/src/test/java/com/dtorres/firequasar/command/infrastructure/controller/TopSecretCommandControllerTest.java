@@ -27,6 +27,7 @@ import com.dtorres.firequasar.command.domain.model.Spaceship;
 import com.dtorres.firequasar.command.domain.model.TrilerationMessage;
 import com.dtorres.firequasar.command.domain.service.LocationService;
 import com.dtorres.firequasar.command.domain.service.MessageService;
+import com.dtorres.firequasar.command.infrastructure.old.controller.TopSecretCommandController;
 import com.dtorres.firequasar.command.infrastructure.service.cache.CombineSpaceshipCacheService;
 import com.dtorres.firequasar.command.infrastructure.service.trileration.NonLinearTrilaterationService;
 import com.dtorres.firequasar.commons.domain.exceptions.TopSecretException;

@@ -1,4 +1,4 @@
-package com.dtorres.firequasar.command.infrastructure.controller;
+package com.dtorres.firequasar.command.infrastructure.old.controller;
 
 import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
